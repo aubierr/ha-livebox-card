@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Livebox TV Card – test</title>
+<style>
+  body { margin: 0; padding: 24px 16px; font-family: Roboto, system-ui, sans-serif; background: #f0f0f0; --primary-text-color:#1c1c1c; --secondary-text-color:#727272; --secondary-background-color:#eef0f3; --divider-color:#e0e0e0; }
+  body.dark { background: #111; --primary-text-color:#e1e1e1; --secondary-text-color:#9b9b9b; --secondary-background-color:#2a2c30; --divider-color:#333; --ha-card-background:#1c1c1e; }
+  .wrap { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .col { width: 420px; max-width: 100%; }
+  #log { font: 12px monospace; white-space: pre-wrap; background: #222; color: #9f9; padding: 8px; border-radius: 8px; max-height: 200px; overflow: auto; }
+</style>
+<script>
+  // stubs minimalistes des éléments HA (la @font-face doit être déclarée dans le document)
+  document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">');
+  customElements.define("ha-card", class extends HTMLElement {
+    connectedCallback() { this.style.cssText += ";display:block;background:var(--ha-card-background,#fff);border-radius:16px;box-shadow:0 2px 6px rgba(0,0,0,.12);overflow:hidden"; }
+  });
+  customElements.define("ha-icon", class extends HTMLElement {
+    static get observedAttributes() { return ["icon"]; }
+    constructor() { super(); this.attachShadow({ mode: "open" }); }
+    attributeChangedCallback() {
+      const n = (this.getAttribute("icon") || "").replace("mdi:", "");
+      this.shadowRoot.innerHTML = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css"><i class="mdi mdi-${n}" style="font-size:var(--mdc-icon-size,24px);line-height:1;display:block"></i>`;
+    }
+  });
+</script>
+<script type="module" src="../livebox-tv-card.js"></script>
+</head>
+<body>
+<button onclick="document.body.classList.toggle('dark')">Thème clair/sombre</button>
+<button onclick="toggleOff()">Allumer/éteindre (simulé)</button>
+<div class="wrap">
+  <div class="col" id="c1"></div>
+  <div class="col" id="c2"></div>
+</div>
+<p>Appels de services :</p>
+<div id="log"></div>
+<script>
+  const names = ["GUIDE TV","TF1","FRANCE 2","FRANCE 3","CANAL+","FRANCE 5","M6","ARTE","C8","W9","TMC","TFX","NRJ12","LCP","FRANCE 4","BFM TV","CNEWS","CSTAR","GULLI","TF1 SERIES FILMS","L'EQUIPE","6TER","RMC STORY","RMC DECOUVERTE","CHERIE 25","LCI","FRANCEINFO:"];
+  const list = names.map((n, i) => `${i}. ${n}`).concat(["34. RTL9","40. CANAL+","50. BEIN SPORTS 1","51. BEIN SPORTS 2","120. FRANCE 3 CÔTE D'AZUR","901. TF1 4K"]);
+  const now = new Date(Date.now() - 1200e3).toISOString();
+  let st = {
+    entity_id: "media_player.livebox_salon",
+    state: "playing",
+    attributes: {
+      friendly_name: "Livebox Salon",
+      source_list: list, source: "7. ARTE",
+      media_title: "7. ARTE - Les routes de l'impossible", media_series_title: "Les routes de l'impossible",
+      media_season: 2, media_episode: 5, media_duration: 3000, media_position: 0, media_position_updated_at: now,
+      entity_picture: "https://picsum.photos/seed/livebox/800/450", media_content_type: "tvshow", is_volume_muted: false,
+    },
+  };
+  const remote = { entity_id: "remote.livebox_salon", state: "on", attributes: {} };
+  const log = (t) => { const l = document.getElementById("log"); l.textContent = t + "\n" + l.textContent; };
+  const cards = [];
+  const hass = () => ({
+    states: { [st.entity_id]: st, [remote.entity_id]: remote },
+    entities: { [st.entity_id]: { device_id: "dev1", platform: "liveboxtvuhd" }, [remote.entity_id]: { device_id: "dev1", platform: "liveboxtvuhd" } },
+    callService: async (d, s, data) => {
+      log(`${d}.${s} ${JSON.stringify(data)}`);
+      if (d === "media_player" && s === "select_source") {
+        setTimeout(() => { st = { ...st, attributes: { ...st.attributes, source: data.source, media_title: data.source + " - Journal", entity_picture: "https://picsum.photos/seed/" + encodeURIComponent(data.source) + "/800/450", media_series_title: null, media_season: null, media_episode: null, media_position: 0, media_position_updated_at: new Date().toISOString(), media_duration: 1800 } }; push(); }, 1500);
+      }
+      if (d === "media_player" && s === "media_play_pause") { st = { ...st, state: st.state === "playing" ? "paused" : "playing" }; push(); }
+      if (d === "media_player" && s === "volume_mute") { st = { ...st, attributes: { ...st.attributes, is_volume_muted: data.is_volume_muted } }; push(); }
+      if (d === "media_player" && (s === "turn_on" || s === "turn_off")) { st = { ...st, state: s === "turn_on" ? "playing" : "off" }; push(); }
+    },
+  });
+  function push() { const h = hass(); cards.forEach((c) => (c.hass = h)); }
+  function toggleOff() { st = { ...st, state: st.state === "off" ? "playing" : "off" }; push(); }
+
+  customElements.whenDefined("livebox-tv-card").then(() => {
+  const c1 = document.createElement("livebox-tv-card");
+  c1.setConfig({ entity: "media_player.livebox_salon", favorites: [1, 2, 6, "ARTE"], default_panel: "channels" });
+  const c2 = document.createElement("livebox-tv-card");
+  c2.setConfig({ entity: "media_player.livebox_salon", name: "Chambre", channel_layout: "list", default_panel: "remote", show_artwork: false });
+  document.getElementById("c1").appendChild(c1);
+  document.getElementById("c2").appendChild(c2);
+  cards.push(c1, c2);
+  push();
+  });
+</script>
+</body>
+</html>

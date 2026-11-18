@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planche des logos</title>
+<style>
+  body { margin: 0; padding: 16px; font: 12px system-ui, sans-serif; background: #f0f0f0; }
+  #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+  .t { text-align: center; }
+  .t div { width: 72px; height: 72px; margin: 0 auto 4px; border-radius: 14px; background: radial-gradient(circle at 30% 20%, #3a3d45, #1b1d22); display: grid; place-items: center; }
+  .t img { max-width: 72%; max-height: 72%; object-fit: contain; }
+  .bad div { outline: 3px solid red; }
+</style>
+</head>
+<body>
+<p id="sum">…</p>
+<div id="grid"></div>
+<script>
+(async () => {
+  const src = await (await fetch('../livebox-tv-card.js')).text();
+  const base = /const LOGO_BASE = "([^"]+)"/.exec(src)[1];
+  const body = /const CHANNEL_LOGOS = \{([\s\S]*?)\n\};/.exec(src)[1].replace(/^\s*\/\/.*$/gm, '');
+  const map = JSON.parse('{' + body.trim().replace(/,$/, '') + '}');
+  const only = new URLSearchParams(location.search).get('only') === 'url';
+  const url = (p) => /^https?:/.test(p) ? p : base + (p.includes('/') ? p : 'france/' + p) + '.png';
+  const entries = Object.entries(map).filter(([, p]) => !only || /^https?:/.test(p));
+  let bad = [];
+  await Promise.all(entries.map(([k, p]) => new Promise((r) => {
+    const t = document.createElement('div'); t.className = 't';
+    const i = new Image(); i.src = url(p);
+    i.onload = () => r(); i.onerror = () => { t.classList.add('bad'); bad.push(k); r(); };
+    const w = document.createElement('div'); w.appendChild(i); t.append(w, k);
+    document.getElementById('grid').appendChild(t);
+  })));
+  document.getElementById('sum').textContent = `${entries.length} logos, échecs : ${bad.length} ${bad.join(', ')}`;
+})();
+</script>
+</body>
+</html>
