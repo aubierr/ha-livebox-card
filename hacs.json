@@ -1,5 +1,7 @@
 {
   "name": "Livebox TV Card",
   "filename": "livebox-tv-card.js",
+  "homeassistant": "2024.11.0",
+  "country": "FR",
   "render_readme": true
 }

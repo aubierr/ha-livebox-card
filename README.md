@@ -1,5 +1,10 @@
 # Livebox TV Card
 
+[![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/docs/faq/custom_repositories/)
+[![Validation HACS](https://github.com/aubierr/ha-livebox-card/actions/workflows/validate.yml/badge.svg)](https://github.com/aubierr/ha-livebox-card/actions/workflows/validate.yml)
+
+![Aperçu de la carte : liste des chaînes et télécommande](docs/apercu.png)
+
 Carte Lovelace pour Home Assistant qui pilote le **décodeur TV UHD Orange** via l'intégration
 [liveboxtvuhd](https://github.com/AkA57/liveboxtvuhd).
 
@@ -13,12 +18,14 @@ Carte Lovelace pour Home Assistant qui pilote le **décodeur TV UHD Orange** via
 
 ## Installation
 
+Nécessite Home Assistant 2024.11 ou plus récent et l'intégration liveboxtvuhd.
+
 ### HACS (dépôt personnalisé)
-1. HACS → ⋮ → *Dépôts personnalisés* → ajoutez l'URL de ce dépôt, catégorie **Dashboard**.
+1. HACS → ⋮ → *Dépôts personnalisés* → ajoutez `https://github.com/aubierr/ha-livebox-card`, catégorie **Dashboard**.
 2. Installez **Livebox TV Card**, puis rechargez le navigateur.
 
 ### Manuelle
-1. Copiez `livebox-tv-card.js` **et le dossier `logos/`** dans `config/www/` :
+1. Copiez le contenu du dossier [`dist/`](dist) (le fichier `livebox-tv-card.js` **et le dossier `logos/`**) dans `config/www/` :
    ```
    config/www/livebox-tv-card.js
    config/www/logos/tf1-fr.png …
@@ -88,7 +95,7 @@ logos:
 
 ### Logos des chaînes
 La carte intègre les **vrais logos** de 245 des 247 chaînes de la liste Orange France, stockés **en local** dans
-le dossier [`logos/`](logos) (198 fichiers, 3,5 Mo, 256 px max) :
+le dossier [`dist/logos/`](dist/logos) (198 fichiers, 3,5 Mo, 256 px max) :
 - 156 fichiers viennent du dépôt libre [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) ;
 - 42 viennent de la base [iptv-org](https://github.com/iptv-org/database) (images imgur, Wikimedia, ibb)
   et de [picons](https://github.com/picons/picons) (Trace Tropical).
@@ -113,3 +120,9 @@ Touchez l'étoile d'une chaîne pour l'ajouter aux favoris. Favoris et récentes
 - Dans la recherche, **Entrée** sélectionne le premier résultat ; tapez un numéro (`40`) ou un nom (`canal`).
 - Le pavé numérique valide tout seul après 2 s. Si le numéro n'est pas dans la liste, les chiffres sont envoyés à la télécommande.
 - Le bouton d'alimentation envoie `turn_on` si le décodeur est éteint et `turn_off` sinon (la touche POWER de la box est une bascule).
+
+## Licence
+Le code est distribué sous licence [MIT](LICENSE).
+Les logos de [`dist/logos/`](dist/logos) n'en font pas partie : ce sont des marques déposées appartenant à leurs
+détenteurs, fournies pour un usage personnel et non commercial. Leurs sources sont listées dans
+[`dist/logos/CREDITS.md`](dist/logos/CREDITS.md).

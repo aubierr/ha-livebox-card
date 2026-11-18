@@ -18,9 +18,9 @@
 <div id="grid"></div>
 <script>
 (async () => {
-  const src = await (await fetch('../livebox-tv-card.js')).text();
-  const base = /const LOGO_BASE = "([^"]+)"/.exec(src)[1];
-  const body = /const CHANNEL_LOGOS = \{([\s\S]*?)\n\};/.exec(src)[1].replace(/^\s*\/\/.*$/gm, '');
+  const src = await (await fetch('../dist/livebox-tv-card.js')).text();
+  const base = /const\s+LOGO_BASE\s*=\s*"([^"]+)"/.exec(src)[1];
+  const body = /const\s+CHANNEL_LOGOS\s*=\s*\{([\s\S]*?)\n\};/.exec(src)[1].replace(/^\s*\/\/.*$/gm, '');
   const map = JSON.parse('{' + body.trim().replace(/,$/, '') + '}');
   const only = new URLSearchParams(location.search).get('only') === 'url';
   const url = (p) => /^https?:/.test(p) ? p : base + (p.includes('/') ? p : 'france/' + p) + '.png';

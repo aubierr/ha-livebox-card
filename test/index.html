@@ -9,6 +9,11 @@
   body.dark { background: #111; --primary-text-color:#e1e1e1; --secondary-text-color:#9b9b9b; --secondary-background-color:#2a2c30; --divider-color:#333; --ha-card-background:#1c1c1e; }
   .wrap { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
   .col { width: 420px; max-width: 100%; }
+  /* ?apercu : mise en page de la capture du README */
+  body.apercu { padding: 24px; background: #0f1012; }
+  body.apercu > button, body.apercu > p, body.apercu #log { display: none; }
+  body.apercu .wrap { flex-wrap: nowrap; }
+  body.apercu .col { width: 400px; }
   #log { font: 12px monospace; white-space: pre-wrap; background: #222; color: #9f9; padding: 8px; border-radius: 8px; max-height: 200px; overflow: auto; }
 </style>
 <script>
@@ -26,7 +31,7 @@
     }
   });
 </script>
-<script type="module" src="../livebox-tv-card.js"></script>
+<script type="module" src="../dist/livebox-tv-card.js"></script>
 </head>
 <body>
 <button onclick="document.body.classList.toggle('dark')">Thème clair/sombre</button>
@@ -38,6 +43,7 @@
 <p>Appels de services :</p>
 <div id="log"></div>
 <script>
+  if (new URLSearchParams(location.search).has("apercu")) document.body.classList.add("dark", "apercu");
   const names = ["GUIDE TV","TF1","FRANCE 2","FRANCE 3","CANAL+","FRANCE 5","M6","ARTE","C8","W9","TMC","TFX","NRJ12","LCP","FRANCE 4","BFM TV","CNEWS","CSTAR","GULLI","TF1 SERIES FILMS","L'EQUIPE","6TER","RMC STORY","RMC DECOUVERTE","CHERIE 25","LCI","FRANCEINFO:"];
   const list = names.map((n, i) => `${i}. ${n}`).concat(["34. RTL9","40. CANAL+","50. BEIN SPORTS 1","51. BEIN SPORTS 2","120. FRANCE 3 CÔTE D'AZUR","901. TF1 4K"]);
   const now = new Date(Date.now() - 1200e3).toISOString();

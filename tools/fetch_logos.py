@@ -1,7 +1,7 @@
-"""Télécharge les logos référencés dans livebox-tv-card.js vers <repo>/logos/ (PNG redimensionnés à 256 px max).
+"""Télécharge les logos référencés dans dist/livebox-tv-card.js vers dist/logos/ (PNG redimensionnés à 256 px max).
 
 Usage : python tools/fetch_logos.py [dossier_du_depot] [--force]   (nécessite Pillow : pip install pillow)
-Par défaut, seuls les logos absents de logos/ sont téléchargés ; --force les retélécharge tous.
+Par défaut, seuls les logos absents de dist/logos/ sont téléchargés ; --force les retélécharge tous.
 """
 import io, re, sys, time, unicodedata, urllib.error, urllib.request
 from pathlib import Path
@@ -15,7 +15,7 @@ except Exception:  # noqa: BLE001
 args = [a for a in sys.argv[1:] if not a.startswith("--")]
 force = "--force" in sys.argv
 repo = Path(args[0] if args else ".")
-card = repo / "livebox-tv-card.js"
+card = repo / "dist" / "livebox-tv-card.js"
 if not card.is_file():
     sys.exit(f"Fichier introuvable : {card} (indiquez le dossier du dépôt)")
 src = card.read_text(encoding="utf-8")
@@ -69,7 +69,7 @@ def download(url, tries=4):
                 raise
             time.sleep(int(e.headers.get("Retry-After") or 0) or 3 * (i + 1))
 
-out = repo / "logos"
+out = repo / "dist" / "logos"
 out.mkdir(exist_ok=True)
 done, total, fails, fetched, skipped = {}, 0, [], 0, 0
 for name, path in table.items():
@@ -100,6 +100,47 @@ for name, path in table.items():
         total += (out / fn).stat().st_size
     except Exception as e:  # noqa: BLE001
         fails.append(f"{name}: {e}")
+
+def source_of(url):
+    if "tv-logo/tv-logos" in url:
+        return "tv-logos"
+    if "picons/picons" in url:
+        return "picons"
+    return "iptv-org"
+
+SOURCES = {
+    "tv-logos": ("[tv-logo/tv-logos](https://github.com/tv-logo/tv-logos)",
+                 "logos proposés par le projet sous licences Creative Commons CC BY-SA / CC BY-NC-SA "
+                 "(usage non commercial pour une partie d'entre eux)"),
+    "picons": ("[picons/picons](https://github.com/picons/picons)", "dépôt sous licence GPL-3.0"),
+    "iptv-org": ("[iptv-org/database](https://github.com/iptv-org/database)",
+                 "URLs d'images référencées par la base (Unlicense pour les données) ; les images elles-mêmes "
+                 "appartiennent aux chaînes"),
+}
+channels_by_file = {}
+for name, path in table.items():
+    channels_by_file.setdefault(local_name(name, path), []).append(name)
+lines = [
+    "# Crédits des logos",
+    "",
+    "Les logos de ce dossier sont des **marques déposées appartenant à leurs détenteurs respectifs** "
+    "(chaînes et groupes audiovisuels). Ils sont fournis uniquement pour identifier les chaînes, dans le cadre "
+    "d'un usage personnel et non commercial. Ils ne sont **pas** couverts par la licence MIT du projet.",
+    "",
+    "Les images ont été redimensionnées (256 px max) et converties en PNG, sauf les SVG.",
+    "Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une issue sur le dépôt.",
+    "",
+    "## Sources",
+    "",
+]
+for key, (link, note) in SOURCES.items():
+    count = sum(1 for u in done.values() if source_of(u) == key)
+    lines.append(f"- {link} — {count} fichier{'s' if count > 1 else ''} : {note}.")
+lines += ["", "## Fichiers", "", "| Fichier | Chaînes | Source | Origine |", "| --- | --- | --- | --- |"]
+for fn in sorted(done):
+    chans = ", ".join(channels_by_file[fn][:3]) + (f" (+{len(channels_by_file[fn]) - 3})" if len(channels_by_file[fn]) > 3 else "")
+    lines.append(f"| `{fn}` | {chans.replace('|', '/')} | {source_of(done[fn])} | [lien]({done[fn]}) |")
+(out / "CREDITS.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 print(f"{len(table)} chaînes -> {len(done)} fichiers ({fetched} téléchargés, {skipped} déjà présents), "
       f"{total / 1024:.0f} Ko, échecs : {len(fails)}")
