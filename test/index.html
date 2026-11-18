@@ -97,8 +97,18 @@
     states[id] = { ...st, ...patch, attributes: { ...st.attributes, ...attrs } };
     push();
   };
+  const userData = {}; // simule frontend/get_user_data et set_user_data
   const hass = () => ({
     states: { ...states },
+    callWS: async (msg) => {
+      if (msg.type === "frontend/get_user_data") return { value: userData[msg.key] ?? null };
+      if (msg.type === "frontend/set_user_data") {
+        userData[msg.key] = msg.value;
+        log(`user_data ${msg.key} ${JSON.stringify(msg.value)}`);
+        return null;
+      }
+      throw new Error("unknown_command");
+    },
     entities: Object.fromEntries(Object.keys(states).map((id) => [id, { device_id: "dev_" + id.split("_").pop(), platform: "liveboxtvuhd" }])),
     callService: async (d, s, data) => {
       log(`${d}.${s} ${JSON.stringify(data)}`);

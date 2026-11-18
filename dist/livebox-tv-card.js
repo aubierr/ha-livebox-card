@@ -401,6 +401,58 @@ const lsSet = (key, value) => {
   }
 };
 
+/*
+ * Synchronisation des favoris et récentes avec le compte Home Assistant
+ * (frontend/get_user_data / set_user_data) : sauvegardés côté serveur et partagés
+ * entre tous les appareils du même utilisateur. Le localStorage sert de cache
+ * et de solution de secours si le serveur n'est pas joignable.
+ */
+const favKeyOf = (entity) => `${CARD_TAG}:fav:${entity}`;
+const recentKeyOf = (entity) => `${CARD_TAG}:recent:${entity}`;
+const syncKeyOf = (entity) => `${CARD_TAG}:${entity}`;
+const SYNC_TTL = 30000; // relecture du serveur au plus toutes les 30 s
+const userDataCache = new Map(); // entité -> { at, promise }
+
+const saveUserData = (hass, entity) => {
+  if (!hass || !hass.callWS) return;
+  const value = { fav: lsGet(favKeyOf(entity), null), recent: lsGet(recentKeyOf(entity), []) };
+  userDataCache.set(entity, { at: Date.now(), promise: Promise.resolve(true) });
+  hass.callWS({ type: "frontend/set_user_data", key: syncKeyOf(entity), value }).catch(() => {});
+};
+
+// Renvoie une promesse résolue à true si le localStorage a été mis à jour depuis le serveur.
+const loadUserData = (hass, entity, force) => {
+  if (!hass || !hass.callWS) return Promise.resolve(false);
+  const cached = userDataCache.get(entity);
+  if (cached && !(force && Date.now() - cached.at > SYNC_TTL)) return cached.promise;
+  const promise = hass
+    .callWS({ type: "frontend/get_user_data", key: syncKeyOf(entity) })
+    .then((res) => {
+      const value = res && res.value;
+      if (value && typeof value === "object") {
+        let changed = false;
+        if (Array.isArray(value.fav) && JSON.stringify(value.fav) !== JSON.stringify(lsGet(favKeyOf(entity), null))) {
+          lsSet(favKeyOf(entity), value.fav);
+          changed = true;
+        }
+        if (Array.isArray(value.recent) && JSON.stringify(value.recent) !== JSON.stringify(lsGet(recentKeyOf(entity), []))) {
+          lsSet(recentKeyOf(entity), value.recent);
+          changed = true;
+        }
+        return changed;
+      }
+      // rien côté serveur : on y envoie ce que ce navigateur connaît déjà
+      if (lsGet(favKeyOf(entity), null) || lsGet(recentKeyOf(entity), null)) saveUserData(hass, entity);
+      return false;
+    })
+    .catch(() => {
+      userDataCache.delete(entity); // nouvel essai au prochain affichage
+      return false;
+    });
+  userDataCache.set(entity, { at: Date.now(), promise });
+  return promise;
+};
+
 class LiveboxTvCard extends HTMLElement {
   constructor() {
     super();
@@ -567,6 +619,7 @@ class LiveboxTvCard extends HTMLElement {
   set hass(hass) {
     this._hass = hass;
     if (!this._config) return;
+    this._syncUserData();
     const st = hass.states[this._config.entity];
     const remoteId = this._remoteId();
     const rst = remoteId ? hass.states[remoteId] : null;
@@ -651,10 +704,20 @@ class LiveboxTvCard extends HTMLElement {
   }
 
   get _favKey() {
-    return `${CARD_TAG}:fav:${this._config.entity}`;
+    return favKeyOf(this._config.entity);
   }
   get _recentKey() {
-    return `${CARD_TAG}:recent:${this._config.entity}`;
+    return recentKeyOf(this._config.entity);
+  }
+
+  _syncUserData(force) {
+    const entity = this._config && this._config.entity;
+    if (!entity || !this._hass) return;
+    if (!force && this._syncedFor === entity) return;
+    this._syncedFor = entity;
+    loadUserData(this._hass, entity, force).then((changed) => {
+      if (changed && this._config && this._config.entity === entity) this._renderList();
+    });
   }
 
   _favorites() {
@@ -674,6 +737,7 @@ class LiveboxTvCard extends HTMLElement {
     if (fav.has(source)) fav.delete(source);
     else fav.add(source);
     lsSet(this._favKey, [...fav]);
+    saveUserData(this._hass, this._config.entity);
     this._renderList();
   }
 
@@ -681,6 +745,7 @@ class LiveboxTvCard extends HTMLElement {
     const recent = lsGet(this._recentKey, []).filter((s) => s !== source);
     recent.unshift(source);
     lsSet(this._recentKey, recent.slice(0, 12));
+    saveUserData(this._hass, this._config.entity);
   }
 
   _filteredChannels() {
@@ -900,6 +965,7 @@ class LiveboxTvCard extends HTMLElement {
         if (this._panel === "channels") {
           const cur = this.shadowRoot.querySelector(".chan.current");
           if (cur) cur.scrollIntoView({ block: "nearest" });
+          this._syncUserData(true); // récupère les changements faits sur un autre appareil
         }
         break;
       case "tab":

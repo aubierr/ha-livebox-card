@@ -148,8 +148,10 @@ démarre, puis zappe dessus. Si votre décodeur met plus de temps à démarrer, 
 | ![Carte en veille, thème clair](docs/veille-clair.png) | ![Carte en veille, thème sombre](docs/veille-sombre.png) |
 
 ### Favoris et récentes
-Touchez l'étoile d'une chaîne pour l'ajouter aux favoris. Favoris et récentes sont mémorisés dans le navigateur
-(par appareil). La liste `favorites` de la configuration sert de point de départ tant qu'aucun favori n'a été modifié.
+Touchez l'étoile d'une chaîne pour l'ajouter aux favoris. Favoris et récentes sont enregistrés dans votre
+**compte Home Assistant** : ils sont conservés côté serveur et partagés entre tous vos appareils (navigateur, app
+Companion…). Chaque utilisateur HA a ses propres favoris. Une copie locale sert de secours si le serveur n'est pas
+joignable ; les favoris déjà présents dans un navigateur sont envoyés au compte à la première ouverture. La liste `favorites` de la configuration sert de point de départ tant qu'aucun favori n'a été modifié.
 
 ## Astuces
 - Dans la recherche, **Entrée** sélectionne le premier résultat ; tapez un numéro (`40`) ou un nom (`canal`).
