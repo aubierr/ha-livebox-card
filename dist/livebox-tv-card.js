@@ -11,7 +11,7 @@
  *  - éditeur visuel
  */
 
-const CARD_VERSION = "1.0.0";
+const CARD_VERSION = "1.0.1";
 const CARD_TAG = "livebox-tv-card";
 
 const DEFAULTS = {
