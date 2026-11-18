@@ -81,6 +81,8 @@
   function push() { const h = hass(); cards.forEach((c) => (c.hass = h)); }
   function toggleOff() { st = { ...st, state: st.state === "off" ? "playing" : "off" }; push(); }
 
+  // ?veille : décodeur éteint (capture de l'état en veille)
+  if (new URLSearchParams(location.search).has("veille")) st = { ...st, state: "off" };
   customElements.whenDefined("livebox-tv-card").then(() => {
   const c1 = document.createElement("livebox-tv-card");
   c1.setConfig({ entity: "media_player.livebox_salon", favorites: [1, 2, 6, "ARTE"], default_panel: "channels" });

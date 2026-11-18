@@ -25,6 +25,7 @@ const DEFAULTS = {
   show_keypad: true,
   hide_guide: false,
   close_on_select: true,
+  power_on_delay: 6, // secondes entre l'allumage et le changement de chaîne quand on choisit une chaîne en veille
   builtin_logos: true,
   favorites: [],
   logos: {},
@@ -502,6 +503,7 @@ class LiveboxTvCard extends HTMLElement {
               },
             },
             { name: "list_height", selector: { number: { min: 150, max: 900, step: 10, unit_of_measurement: "px", mode: "box" } } },
+            { name: "power_on_delay", selector: { number: { min: 0, max: 30, step: 1, unit_of_measurement: "s", mode: "box" } } },
             { name: "logo_template", selector: { text: {} } },
             { name: "logo_path", selector: { text: {} } },
           ],
@@ -537,6 +539,7 @@ class LiveboxTvCard extends HTMLElement {
           show_keypad: "Bouton pavé numérique",
           hide_guide: "Masquer « GUIDE TV »",
           close_on_select: "Fermer la liste après sélection",
+          power_on_delay: "Délai avant de zapper après l'allumage",
           builtin_logos: "Logos des chaînes intégrés",
           logo_path: "Dossier des logos intégrés (vide = logos/ à côté de la carte)",
         }[s.name]),
@@ -567,7 +570,8 @@ class LiveboxTvCard extends HTMLElement {
     const st = hass.states[this._config.entity];
     const remoteId = this._remoteId();
     const rst = remoteId ? hass.states[remoteId] : null;
-    if (this._pending && st && (st.attributes.source === this._pending.source || Date.now() > this._pending.until)) {
+    const reached = st && st.state !== "off" && !(this._pending && this._pending.powering) && st.attributes.source === (this._pending && this._pending.source);
+    if (this._pending && st && (reached || Date.now() > this._pending.until)) {
       this._pending = null;
       this._lastState = null;
     }
@@ -583,6 +587,10 @@ class LiveboxTvCard extends HTMLElement {
   }
 
   getCardSize() {
+    const st = this._stateObj;
+    if (st && ["off", "unavailable", "unknown"].includes(st.state) && !(this._pending && this._pending.powering)) {
+      return this._panel ? 7 : 1;
+    }
     return this._panel ? 9 : 4;
   }
 
@@ -599,6 +607,7 @@ class LiveboxTvCard extends HTMLElement {
     clearInterval(this._timer);
     clearTimeout(this._refreshT);
     clearTimeout(this._keypadT);
+    // _powerT n'est pas annulé : le zapping prévu après l'allumage doit avoir lieu même si la carte est masquée
   }
 
   /* ------------------------------------------------------------------ */
@@ -807,10 +816,26 @@ class LiveboxTvCard extends HTMLElement {
   }
 
   _selectSource(source) {
-    this._pending = { source, until: Date.now() + 35000 };
+    const st = this._stateObj;
+    const powering = !!st && st.state === "off";
     this._pushRecent(source);
-    this._mp("select_source", { source });
-    this._refreshSoon();
+    clearTimeout(this._powerT);
+    if (powering) {
+      // décodeur en veille : on l'allume, puis on zappe une fois qu'il a démarré
+      const delay = Math.max(0, Number(this._config.power_on_delay) || 0) * 1000;
+      this._pending = { source, powering: true, until: Date.now() + delay + 40000 };
+      this._mp("turn_on");
+      this._powerT = setTimeout(() => {
+        if (this._pending && this._pending.powering) this._pending.powering = false;
+        this._mp("select_source", { source });
+        this._refreshSoon();
+        this._render();
+      }, delay);
+    } else {
+      this._pending = { source, until: Date.now() + 35000 };
+      this._mp("select_source", { source });
+      this._refreshSoon();
+    }
     if (this._config.close_on_select) {
       this._panel = null;
       this._search = "";
@@ -828,7 +853,7 @@ class LiveboxTvCard extends HTMLElement {
       this._selectSource(match.source);
       this._panel = "keypad";
       this._render();
-    } else if (this._remoteId()) {
+    } else if (this._remoteId() && this._stateObj && this._stateObj.state !== "off") {
       this._remote(num.split(""));
       this._refreshSoon(4000);
       this._render();
@@ -975,7 +1000,14 @@ class LiveboxTvCard extends HTMLElement {
 
     const a = st.attributes;
     const unavailable = st.state === "unavailable" || st.state === "unknown";
-    const off = st.state === "off" || unavailable;
+    const powering = !!(this._pending && this._pending.powering);
+    // en veille : affichage compact, sauf pendant l'allumage déclenché par le choix d'une chaîne
+    if ((st.state === "off" && !powering) || unavailable) {
+      root.innerHTML = this._standbyHtml(st, unavailable);
+      this._afterRender(searchFocused, caret, scroll);
+      return;
+    }
+    const off = false;
     const playing = st.state === "playing";
     const source = this._pending ? this._pending.source : a.source;
     const cur = this._parse(source);
@@ -1001,7 +1033,7 @@ class LiveboxTvCard extends HTMLElement {
     const hasRemote = !!remoteId && this._hass.states[remoteId] && this._hass.states[remoteId].state !== "unavailable";
     const p = this._config.show_progress && !off && !this._pending ? this._progress() : null;
 
-    const status = unavailable ? "Indisponible" : off ? "Éteint" : this._pending ? "Changement de chaîne…" : playing ? "En direct" : st.state === "paused" ? "En pause" : "Allumé";
+    const status = powering ? "Allumage…" : this._pending ? "Changement de chaîne…" : playing ? "En direct" : st.state === "paused" ? "En pause" : "Allumé";
 
     root.innerHTML = `
       ${this._style()}
@@ -1069,7 +1101,12 @@ class LiveboxTvCard extends HTMLElement {
         ${!off ? this._panelHtml(hasRemote) : ""}
       </ha-card>
     `;
+    this._afterRender(searchFocused, caret, scroll);
+  }
 
+  // remplit la liste / le pavé et restaure le focus et le défilement après un rendu complet
+  _afterRender(searchFocused, caret, scroll) {
+    const root = this.shadowRoot;
     if (this._panel === "channels") {
       this._renderList();
       const list = root.querySelector(".list");
@@ -1083,6 +1120,35 @@ class LiveboxTvCard extends HTMLElement {
       }
     }
     if (this._panel === "keypad") this._renderKeypadDisplay();
+  }
+
+  // Décodeur en veille (ou injoignable) : une seule ligne, avec accès aux chaînes et au pavé numérique.
+  // Choisir une chaîne allume le décodeur puis zappe dessus.
+  _standbyHtml(st, unavailable) {
+    const name = this._config.name || st.attributes.friendly_name || "Livebox TV";
+    // en veille, seule la liste des chaînes est proposée (ni pavé numérique ni télécommande)
+    const panel = !unavailable && this._panel === "channels" ? "channels" : null;
+    return `
+      ${this._style()}
+      <ha-card class="is-standby ${unavailable ? "is-unavailable" : ""}">
+        <div class="standby">
+          <button class="standby-info" data-action="more-info" title="Plus d'informations">
+            <span class="standby-icon">${this._icon(unavailable ? "mdi:lan-disconnect" : "mdi:television-off")}</span>
+            <span class="standby-text">
+              <span class="standby-name">${esc(name)}</span>
+              <span class="standby-state">${unavailable ? "Décodeur injoignable" : "En veille"}</span>
+            </span>
+          </button>
+          ${
+            unavailable
+              ? ""
+              : this._btn("panel", "mdi:format-list-bulleted", "Choisir une chaîne (allume le décodeur)", { value: "channels", cls: `tool ${panel === "channels" ? "active" : ""}` })
+          }
+          ${this._btn("power", "mdi:power", "Allumer", { cls: "tool power-off", disabled: unavailable })}
+        </div>
+        ${panel ? `<div class="standby-hint">${this._icon("mdi:information-outline")}Choisir une chaîne allume le décodeur.</div>${this._panelHtml(false)}` : ""}
+      </ha-card>
+    `;
   }
 
   _panelHtml(hasRemote) {
@@ -1143,7 +1209,7 @@ class LiveboxTvCard extends HTMLElement {
     const match = this._channels().find((c) => c.num === String(Number(this._keypad)));
     el.innerHTML = `${match ? this._logo(match, "small") : ""}
       <span class="kp-num">${esc(this._keypad)}</span>
-      <span class="kp-name">${match ? esc(match.name) : this._remoteId() ? "Envoi des touches…" : "Chaîne inconnue"}</span>
+      <span class="kp-name">${match ? esc(match.name) : this._remoteId() && this._stateObj && this._stateObj.state !== "off" ? "Envoi des touches…" : "Chaîne inconnue"}</span>
       <span class="kp-timer"></span>`;
   }
 
@@ -1270,6 +1336,19 @@ class LiveboxTvCard extends HTMLElement {
       .btn.tool.active { background: rgba(255,121,0,.14); box-shadow: inset 0 0 0 1.5px var(--ltv-orange); }
 
       /* ---------- panneaux ---------- */
+      /* ---------- veille : une seule ligne ---------- */
+      .standby { display: flex; align-items: center; gap: 8px; padding: 10px 12px; }
+      .standby-info { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; text-align: left; }
+      .standby-icon { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--ltv-surface); color: var(--ltv-muted); }
+      .standby-text { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+      .standby-name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .standby-state { font-size: 13px; color: var(--ltv-muted); }
+      .is-unavailable .standby-state { color: var(--error-color, #db4437); }
+      .btn.tool.power-off { color: var(--ltv-orange); }
+      .btn.tool.power-off:not(:disabled):hover { background: rgba(255,121,0,.14); }
+      .standby-hint { display: flex; align-items: center; gap: 6px; padding: 0 14px 10px; font-size: 12px; color: var(--ltv-muted); }
+      .standby-hint ha-icon { --mdc-icon-size: 16px; }
+
       .panel { border-top: 1px solid var(--ltv-divider); padding: 12px; animation: slide .18s ease-out; }
       @keyframes slide { from { opacity: 0; transform: translateY(-6px); } }
 

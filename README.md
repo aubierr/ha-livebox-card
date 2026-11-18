@@ -18,6 +18,7 @@ Carte Lovelace pour Home Assistant qui pilote le **décodeur TV UHD Orange** via
 - **Télécommande** intégrée (croix directionnelle, OK, retour, menu, guide, VOD, retour/avance rapide, enregistrement)
 - **Pavé numérique** : tapez `6` → M6, la chaîne est reconnue et sélectionnée automatiquement
 - Mise à jour optimiste : la chaîne choisie s'affiche tout de suite, puis l'entité est rafraîchie (l'intégration n'interroge le décodeur que toutes les 30 s)
+- **Mode veille compact** : décodeur éteint, la carte se réduit à une ligne ; choisir une chaîne l'allume puis zappe dessus
 - Éditeur visuel, thèmes clair/sombre
 
 ## Installation
@@ -75,6 +76,7 @@ show_remote: true
 show_keypad: true
 hide_guide: false                     # masque « 0. GUIDE TV »
 close_on_select: true
+power_on_delay: 6                     # secondes entre l'allumage et le zapping (chaîne choisie en veille)
 builtin_logos: true                   # logos réels des chaînes
 favorites: [1, 2, 3, 5, 6, "ARTE"]    # favoris initiaux (numéro ou nom)
 logo_path: /local/logos/              # dossier des logos intégrés (défaut : logos/ à côté de la carte)
@@ -99,6 +101,7 @@ logos:
 | `show_keypad` | `true` | Bouton pavé numérique |
 | `hide_guide` | `false` | Masquer l'entrée « GUIDE TV » |
 | `close_on_select` | `true` | Fermer la liste après avoir choisi une chaîne |
+| `power_on_delay` | `6` | Secondes d'attente entre l'allumage et le changement de chaîne, quand on choisit une chaîne en veille |
 | `builtin_logos` | `true` | Utiliser les logos intégrés |
 | `logo_path` | `logos/` à côté de la carte | Dossier contenant les logos intégrés |
 | `favorites` | `[]` | Favoris initiaux (numéros ou noms) |
@@ -131,6 +134,15 @@ Pour vos propres images, déposez-les par ex. dans `config/www/mes-logos/` et ut
 
 Pour retélécharger les logos (après modification de la table `CHANNEL_LOGOS` de la carte) :
 `python tools/fetch_logos.py .` (nécessite Pillow). `test/logos.html` affiche la planche des logos en ligne.
+
+### Mode veille
+Quand le décodeur est éteint, la carte se réduit à une seule ligne : nom, état, boutons **Chaînes**
+et **marche**. Choisir une chaîne dans la liste allume le décodeur, attend `power_on_delay` secondes qu'il
+démarre, puis zappe dessus. Si votre décodeur met plus de temps à démarrer, augmentez ce délai.
+
+| Thème clair | Thème sombre |
+| --- | --- |
+| ![Carte en veille, thème clair](docs/veille-clair.png) | ![Carte en veille, thème sombre](docs/veille-sombre.png) |
 
 ### Favoris et récentes
 Touchez l'étoile d'une chaîne pour l'ajouter aux favoris. Favoris et récentes sont mémorisés dans le navigateur
