@@ -3,6 +3,8 @@
 [![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/docs/faq/custom_repositories/)
 [![Validation HACS](https://github.com/aubierr/ha-livebox-card/actions/workflows/validate.yml/badge.svg)](https://github.com/aubierr/ha-livebox-card/actions/workflows/validate.yml)
 
+[![Ouvrir dans HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=aubierr&repository=ha-livebox-card&category=plugin)
+
 | Thème clair | Thème sombre |
 | --- | --- |
 | ![Aperçu en thème clair : liste des chaînes et télécommande](docs/apercu-clair.png) | ![Aperçu en thème sombre : liste des chaînes et télécommande](docs/apercu-sombre.png) |
@@ -23,8 +25,16 @@ Carte Lovelace pour Home Assistant qui pilote le **décodeur TV UHD Orange** via
 Nécessite Home Assistant 2024.11 ou plus récent et l'intégration liveboxtvuhd.
 
 ### HACS (dépôt personnalisé)
-1. HACS → ⋮ → *Dépôts personnalisés* → ajoutez `https://github.com/aubierr/ha-livebox-card`, catégorie **Dashboard**.
+Le plus simple : cliquez sur ce bouton, il ouvre la carte directement dans le HACS de votre Home Assistant.
+
+[![Ouvrir dans HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=aubierr&repository=ha-livebox-card&category=plugin)
+
+Ou à la main :
+1. HACS → ⋮ → *Dépôts personnalisés* → ajoutez `https://github.com/aubierr/ha-livebox-card`, catégorie **Dashboard**
+   ([aide HACS sur les dépôts personnalisés](https://hacs.xyz/docs/faq/custom_repositories/)).
 2. Installez **Livebox TV Card**, puis rechargez le navigateur.
+
+HACS n'est pas encore installé ? Suivez le [guide d'installation de HACS](https://hacs.xyz/docs/use/).
 
 ### Manuelle
 1. Copiez le contenu du dossier [`dist/`](dist) (le fichier `livebox-tv-card.js` **et le dossier `logos/`**) dans `config/www/` :
