@@ -454,8 +454,16 @@ class LiveboxTvCard extends HTMLElement {
   /* ------------------------------------------------------------------ */
 
   static getConfigForm() {
+    // L'éditeur de HA affiche `default` quand l'option est absente de la configuration :
+    // on reprend les valeurs de DEFAULTS pour que les cases reflètent ce que fait vraiment la carte.
+    const withDefaults = (items) =>
+      items.map((it) => {
+        if (it.schema) return { ...it, schema: withDefaults(it.schema) };
+        const def = DEFAULTS[it.name];
+        return ["boolean", "number", "string"].includes(typeof def) && def !== "" ? { ...it, default: def } : it;
+      });
     return {
-      schema: [
+      schema: withDefaults([
         {
           name: "entity",
           required: true,
@@ -512,7 +520,7 @@ class LiveboxTvCard extends HTMLElement {
             { name: "builtin_logos", selector: { boolean: {} } },
           ],
         },
-      ],
+      ]),
       computeLabel: (s) =>
         ({
           entity: "Lecteur multimédia Livebox",
