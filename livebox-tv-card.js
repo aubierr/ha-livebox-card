@@ -1285,7 +1285,7 @@ if (!window.customCards.some((c) => c.type === CARD_TAG)) {
     name: "Livebox TV Card",
     description: "Contrôle du décodeur TV UHD Orange : chaînes, programme en cours, télécommande et pavé numérique.",
     preview: true,
-    documentationURL: "https://github.com/AkA57/liveboxtvuhd",
+    documentationURL: "https://github.com/aubierr/ha-livebox-card",
   });
 }
 
