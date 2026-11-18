@@ -1261,7 +1261,7 @@ class LiveboxTvCard extends HTMLElement {
       /* ---------- en-tête ---------- */
       .hero {
         position: relative; color: #fff; padding: 14px 16px 16px; min-height: 150px;
-        display: flex; flex-direction: column; gap: 12px; isolation: isolate;
+        display: flex; flex-direction: column; gap: 12px; isolation: isolate; overflow: hidden;
         background:
           radial-gradient(120% 140% at 0% 0%, hsl(var(--h) 70% 45%) 0%, transparent 60%),
           radial-gradient(120% 140% at 100% 100%, hsl(calc(var(--h) + 50) 65% 30%) 0%, transparent 60%),

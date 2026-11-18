@@ -9,6 +9,8 @@
 | --- | --- |
 | ![Aperçu en thème clair : liste des chaînes et télécommande](docs/apercu-clair.png) | ![Aperçu en thème sombre : liste des chaînes et télécommande](docs/apercu-sombre.png) |
 
+**[▶ Essayer la démo en ligne](https://aubierr.github.io/ha-livebox-card/test/)** (décodeur simulé, aucune installation nécessaire)
+
 Carte Lovelace pour Home Assistant qui pilote le **décodeur TV UHD Orange** via l'intégration
 [liveboxtvuhd](https://github.com/AkA57/liveboxtvuhd).
 
