@@ -10,7 +10,9 @@
   .wrap { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
   .col { width: 420px; max-width: 100%; }
   /* ?apercu : mise en page de la capture du README */
-  body.apercu { padding: 24px; background: #0f1012; }
+  body.apercu { padding: 24px; }
+  body.apercu.dark { background: #0f1012; }
+  body.apercu.light { background: #eef0f3; }
   body.apercu > button, body.apercu > p, body.apercu #log { display: none; }
   body.apercu .wrap { flex-wrap: nowrap; }
   body.apercu .col { width: 400px; }
@@ -43,9 +45,11 @@
 <p>Appels de services :</p>
 <div id="log"></div>
 <script>
-  if (new URLSearchParams(location.search).has("apercu")) document.body.classList.add("dark", "apercu");
-  const names = ["GUIDE TV","TF1","FRANCE 2","FRANCE 3","CANAL+","FRANCE 5","M6","ARTE","C8","W9","TMC","TFX","NRJ12","LCP","FRANCE 4","BFM TV","CNEWS","CSTAR","GULLI","TF1 SERIES FILMS","L'EQUIPE","6TER","RMC STORY","RMC DECOUVERTE","CHERIE 25","LCI","FRANCEINFO:"];
-  const list = names.map((n, i) => `${i}. ${n}`).concat(["34. RTL9","40. CANAL+","50. BEIN SPORTS 1","51. BEIN SPORTS 2","120. FRANCE 3 CÔTE D'AZUR","901. TF1 4K"]);
+  // ?apercu=sombre (défaut) ou ?apercu=clair : mise en page des captures du README
+  const apercu = new URLSearchParams(location.search).get("apercu");
+  if (apercu !== null) document.body.classList.add("apercu", apercu === "clair" ? "light" : "dark");
+  // extrait de la vraie liste Orange France de l'intégration (const_france.py)
+  const list = ["0. GUIDE TV", "1. TF1", "2. FRANCE 2", "3. FRANCE 3", "4. FRANCE 4", "5. FRANCE 5", "6. M6", "7. ARTE", "8. LCP/PS", "9. W9", "10. TMC", "11. TFX", "12. GULLI", "13. BFM TV", "14. CNEWS", "15. LCI", "16. FRANCEINFO:", "17. CSTAR", "18. T18", "19. NOVO19", "20. TF1 SERIES FILMS", "21. LA CHAINE L'EQUIPE", "22. 6TER", "23. RMC STORY", "24. RMC DECOUVERTE", "25. RMC LIFE", "33. TV5MONDE", "34. RTL9", "35. TEVA", "36. PARIS PREMIERE", "37. TV BREIZH", "40. CANAL+", "50. BEIN SPORTS 1", "51. BEIN SPORTS 2", "115. MIEUX", "120. ANIMAUX", "901. TF1 4K"];
   const now = new Date(Date.now() - 1200e3).toISOString();
   let st = {
     entity_id: "media_player.livebox_salon",

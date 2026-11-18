@@ -286,12 +286,63 @@ const CHANNEL_LOGOS = {
   "SUNU YEUF": "https://i.imgur.com/WSlppQj.png",
   "EQUINOXE": "https://i.imgur.com/GKbnBlo.png",
   "B-ONE": "https://i.imgur.com/O66JSq5.png",
+  // Chaînes trouvées ailleurs : france.tv (Mieux, logo extrait en local uniquement : préfixe @) et Wikimedia (Marmiton).
+  "MIEUX": "@mieux",
+  "MARMITON TV": "https://upload.wikimedia.org/wikipedia/fr/thumb/6/6e/Logo_Marmiton_%282019%29.svg/960px-Logo_Marmiton_%282019%29.svg.png",
+  "MARMITE TV": "=MARMITON TV",
+  // Liste Caraïbes (préfixe = : même logo qu'une autre entrée de la table).
+  "GUADELOUPE 1ERE": "https://i.imgur.com/g8QTonQ.png",
+  "MARTINIQUE 1ERE": "https://i.imgur.com/rBhc87a.png",
+  "GUYANE 1ERE": "https://i.imgur.com/aHoVNvh.png",
+  "CANAL 10 GUADELOUPE": "https://i.imgur.com/FAbd8jL.png",
+  "KOUROU TV": "https://i.imgur.com/ZOmFLh3.png",
+  "KMT": "https://i.imgur.com/xIYPPsK.png",
+  "IO TV": "https://i.imgur.com/KwtIGj1.png",
+  "ZITATA TV": "https://i.imgur.com/KJmefse.png",
+  "LCP": "lcp-fr",
+  "FRANCEINFO": "franceinfo-fr",
+  "CHERIE 25": "rmc-life-fr",
+  "TV5 MONDE": "tv5-monde-fr",
+  "LIGUE 1+": "ligue-1plus-fr",
+  "LIGUE 1+2": "ligue-1plus-2-fr",
+  "LIGUE 1+3": "ligue-1plus-3-fr",
+  "LIGUE 1+4": "ligue-1plus-4-fr",
+  "LIGUE 1+5": "ligue-1plus-5-fr",
+  "LIGUE 1+6": "ligue-1plus-6-fr",
+  "LIGUE 1+7": "ligue-1plus-7-fr",
+  "LIGUE 1+8": "ligue-1plus-8-fr",
+  "LIGUE 1+9": "ligue-1plus-9-fr",
+  "PARAMOUNT CHANNEL": "paramount-channel-fr",
+  "PARAMOUNT CHANNEL DECALE": "paramount-channel-decale-fr",
+  "BET": "bet-fr",
+  "GAME ONE": "game-one-fr",
+  "GAME ONE +1": "game-one-fr",
+  "GULLI MAX": "gulli-fr",
+  "L'ESPRIT SORCIER TV": "=L'ESPRIT SORCIER",
+  "IMEARTH": "https://i.imgur.com/6aJMgve.jpeg",
+  "J ONE": "j-one-fr",
+  "ADN": "https://i.imgur.com/HQZQyWt.png",
+  "MTV HITS": "united-kingdom/mtv-hits-uk",
+  "EUROPE 2 POP TV": "europe-2-pop-tv-fr",
+  "TRACE CARABBEAN": "trace-caribbean-fr",
+  "MEZZO LIVE": "mezzo-live-fr",
+  "SPORT EN FRANC": "sport-en-france-fr",
+  "BFM2": "https://alloforfait.fr/wp-content/uploads/2024/03/logo-bfm2-300x200.jpg",
+  "BSMART 4CHANGE": "b-smart-fr",
+  "AFRICA 24": "https://africa24tv.com/wp-content/uploads/2021/09/logo.png",
+  "TAHITI NUI TELEVISION": "https://i.imgur.com/e5eVHam.png",
+  "ARTE GERMANY": "arte-fr",
+  "RTP 3": "https://cdn-images.rtp.pt/common/img/channels/logos/color/horizontal/rtpnoticias_2026.png",
+  "RECORD NEWS": "brazil/record-news-br",
 };
 
 // Logos trop sombres pour le fond foncé des tuiles (contraste WCAG mesuré) : affichés sur fond clair.
+// Liste par nom de fichier : vaut aussi pour les alias et les chaînes qui partagent un logo.
 const LIGHT_LOGOS = new Set([
-  "TV5MONDE", "MUSEUM TV", "TVE INTERNACIONAL", "JOURNAL TV DU GOLF", "LUXE TV", "MAN-X", "EUROCHANNEL",
-  "LE FIGARO TV", "DEMAIN.TV", "MEN'S UP TV", "RAI NEWS 24", "RAI ITALIA", "KTO", "RAI UNO", "TECH & CO",
+  "tv5-monde-fr.png", "museum-eu.png", "tve-internacional-int.png", "journal-tv-du-golf.png", "luxe-tv.png",
+  "man-x.png", "eurochannel.png", "le-figaro-tv.png", "demain-tv.png", "men-s-up-tv.png", "rai-news-24-it.png",
+  "rai-italia.png", "kto-fr.png", "rai-1-it.png", "tech-co.png", "mtv-hits-uk.png", "guadeloupe-1ere.png",
+  "martinique-1ere.png", "guyane-1ere.png", "canal-10-guadeloupe.png", "rtp-3.png",
 ]);
 
 const REMOTE_KEYS = [
@@ -657,14 +708,25 @@ class LiveboxTvCard extends HTMLElement {
 
   _builtinLogos(ch) {
     if (this._config.builtin_logos === false) return {};
-    const name = ch.name.toUpperCase();
-    const path = CHANNEL_LOGOS[name];
+    let name = ch.name.toUpperCase();
+    let path = CHANNEL_LOGOS[name];
+    if (path && path.startsWith("=")) {
+      // alias : même logo qu'une autre entrée
+      name = path.slice(1);
+      path = CHANNEL_LOGOS[name];
+    }
     if (!path) return {};
-    const remote = /^https?:/.test(path) ? path : `${LOGO_BASE}${path.includes("/") ? path : `france/${path}`}.png`;
+    const isUrl = /^https?:/.test(path);
+    const localOnly = path.startsWith("@");
+    const remote = isUrl ? path : localOnly ? "" : `${LOGO_BASE}${path.includes("/") ? path : `france/${path}`}.png`;
     // nom du fichier local : doit rester identique au script de téléchargement des logos
-    const file = /^https?:/.test(path) ? `${slugify(name)}${/\.svg$/i.test(path) ? ".svg" : ".png"}` : `${path.split("/").pop()}.png`;
+    const file = isUrl
+      ? `${slugify(name)}${/\.svg$/i.test(path) ? ".svg" : ".png"}`
+      : localOnly
+      ? `${path.slice(1)}.png`
+      : `${path.split("/").pop()}.png`;
     const base = this._config.logo_path ? `${this._config.logo_path.replace(/\/?$/, "/")}` : LOCAL_LOGO_BASE;
-    return base ? { local: base + file, remote } : { local: remote, remote: "" };
+    return { local: base + file, remote };
   }
 
   _abbr(name) {
@@ -686,10 +748,12 @@ class LiveboxTvCard extends HTMLElement {
     const size = abbr.length > 5 ? "xs" : abbr.length > 3 ? "s" : "";
     const builtin = this._builtinLogos(ch);
     const isBuiltin = url && url === builtin.local;
-    const light = isBuiltin && LIGHT_LOGOS.has(ch.name.toUpperCase()) ? "light" : "";
+    const light = isBuiltin && LIGHT_LOGOS.has(url.split("/").pop()) ? "light" : "";
     const fallback = isBuiltin && builtin.remote ? ` data-fallback="${esc(builtin.remote)}"` : "";
-    return `<div class="logo ${cls} ${light}" style="--h:${hue}">
-      <span class="abbr ${size}">${esc(abbr)}</span>
+    // « 0. GUIDE TV » n'est pas une chaîne : icône du guide des programmes
+    const guide = !url && ch.num === "0";
+    return `<div class="logo ${cls} ${light} ${guide ? "guide" : ""}" style="--h:${hue}">
+      ${guide ? this._icon("mdi:television-guide") : `<span class="abbr ${size}">${esc(abbr)}</span>`}
       ${url ? `<img src="${esc(url)}"${fallback} alt="" loading="lazy" referrerpolicy="no-referrer">` : ""}
     </div>`;
   }
@@ -1165,6 +1229,9 @@ class LiveboxTvCard extends HTMLElement {
         color: #fff; font-weight: 800; letter-spacing: -.02em; text-align: center; line-height: 1;
       }
       .logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: radial-gradient(circle at 30% 20%, #3a3d45, #1b1d22); padding: 14%; box-sizing: border-box; }
+      .logo.guide { background: linear-gradient(135deg, #ff8d26, #e55d00); }
+      .logo.guide ha-icon { --mdc-icon-size: 24px; color: #fff; }
+      .logo.big.guide ha-icon, .as-grid .logo.guide ha-icon { --mdc-icon-size: 32px; }
       .logo.light img { background: radial-gradient(circle at 30% 20%, #ffffff, #e6e8ec); }
       .logo.big { width: 72px; height: 72px; border-radius: 16px; font-size: 22px; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
       .logo.big .abbr.s { font-size: 17px; } .logo.big .abbr.xs { font-size: 13px; }

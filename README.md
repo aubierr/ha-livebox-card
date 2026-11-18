@@ -3,7 +3,9 @@
 [![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/docs/faq/custom_repositories/)
 [![Validation HACS](https://github.com/aubierr/ha-livebox-card/actions/workflows/validate.yml/badge.svg)](https://github.com/aubierr/ha-livebox-card/actions/workflows/validate.yml)
 
-![Aperçu de la carte : liste des chaînes et télécommande](docs/apercu.png)
+| Thème clair | Thème sombre |
+| --- | --- |
+| ![Aperçu en thème clair : liste des chaînes et télécommande](docs/apercu-clair.png) | ![Aperçu en thème sombre : liste des chaînes et télécommande](docs/apercu-sombre.png) |
 
 Carte Lovelace pour Home Assistant qui pilote le **décodeur TV UHD Orange** via l'intégration
 [liveboxtvuhd](https://github.com/AkA57/liveboxtvuhd).
@@ -94,15 +96,23 @@ logos:
 | `logo_template` | – | Modèle d'URL : `{slug}` (`france-2`, `canal-plus`), `{name}`, `{number}` |
 
 ### Logos des chaînes
-La carte intègre les **vrais logos** de 245 des 247 chaînes de la liste Orange France, stockés **en local** dans
-le dossier [`dist/logos/`](dist/logos) (198 fichiers, 3,5 Mo, 256 px max) :
-- 156 fichiers viennent du dépôt libre [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) ;
-- 42 viennent de la base [iptv-org](https://github.com/iptv-org/database) (images imgur, Wikimedia, ibb)
-  et de [picons](https://github.com/picons/picons) (Trace Tropical).
+La carte intègre les **vrais logos** des chaînes, stockés **en local** dans le dossier
+[`dist/logos/`](dist/logos) (226 fichiers, 3,5 Mo, 256 px max) :
 
-Plusieurs chaînes partagent un fichier (les décrochages régionaux utilisent le logo France 3, les beIN Sports Max le
-même logo). Les logos trop sombres sont affichés sur fond clair. **Mieux** et **Marmite TV** n'ont de logo dans aucune
-source ouverte : elles gardent un badge coloré.
+| Liste de l'intégration | Chaînes | Avec logo | Sans logo |
+| --- | --- | --- | --- |
+| France (par défaut) | 247 | **247** | — (« GUIDE TV » affiche l'icône du guide) |
+| Caraïbes | 187 | 183 | ATV, Nina Novelas, Tfou Max, Cheval TV |
+| Pologne | 210 | 4 | non prise en charge pour l'instant |
+
+Sources : le dépôt libre [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) (168 fichiers), la base
+[iptv-org](https://github.com/iptv-org/database) (56 fichiers : imgur, Wikimedia, sites des chaînes),
+[picons](https://github.com/picons/picons) (Trace Tropical) et [france.tv](https://www.france.tv/) (Mieux).
+Le détail fichier par fichier est dans [`dist/logos/CREDITS.md`](dist/logos/CREDITS.md).
+
+Plusieurs chaînes partagent un fichier (les décrochages régionaux utilisent le logo France 3, Marmite TV celui de
+Marmiton TV, Gulli Max celui de Gulli…). Les logos trop sombres sont affichés sur fond clair. Les chaînes sans logo
+gardent un badge coloré.
 
 Ordre de priorité : `logos` → `logo_template` → logo local → même logo en ligne → badge.
 Pour vos propres images, déposez-les par ex. dans `config/www/mes-logos/` et utilisez

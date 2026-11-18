@@ -7,9 +7,10 @@ Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une 
 
 ## Sources
 
-- [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) — 156 fichiers : logos proposés par le projet sous licences Creative Commons CC BY-SA / CC BY-NC-SA (usage non commercial pour une partie d'entre eux).
+- [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) — 168 fichiers : logos proposés par le projet sous licences Creative Commons CC BY-SA / CC BY-NC-SA (usage non commercial pour une partie d'entre eux).
 - [picons/picons](https://github.com/picons/picons) — 1 fichier : dépôt sous licence GPL-3.0.
-- [iptv-org/database](https://github.com/iptv-org/database) — 41 fichiers : URLs d'images référencées par la base (Unlicense pour les données) ; les images elles-mêmes appartiennent aux chaînes.
+- [iptv-org/database](https://github.com/iptv-org/database) — 56 fichiers : URLs d'images référencées par la base (Unlicense pour les données) ; les images elles-mêmes appartiennent aux chaînes.
+- [france.tv](https://www.france.tv/) — 1 fichier : visuel officiel de la chaîne, dont le logo a été extrait sur fond transparent.
 
 ## Fichiers
 
@@ -21,24 +22,30 @@ Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une 
 | `6ter-fr.png` | 6TER | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/6ter-fr.png) |
 | `ab1-fr.png` | AB1 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ab1-fr.png) |
 | `action-fr.png` | ACTION | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/action-fr.png) |
+| `adn.png` | ADN | iptv-org | [lien](https://i.imgur.com/HQZQyWt.png) |
+| `africa-24.png` | AFRICA 24 | iptv-org | [lien](https://africa24tv.com/wp-content/uploads/2021/09/logo.png) |
 | `aljazeera-uk.png` | AL JAZEERA ENGLISH, AL JAZEERA ARABE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/united-kingdom/aljazeera-uk.png) |
 | `animaux-fr.png` | ANIMAUX | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/animaux-fr.png) |
 | `aplus-kids.png` | A+ KIDS | iptv-org | [lien](https://i.imgur.com/ZUVvwC0.png) |
-| `arte-fr.png` | ARTE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/arte-fr.png) |
+| `arte-fr.png` | ARTE, ARTE GERMANY | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/arte-fr.png) |
 | `asharq-news.png` | ASHARQ NEWS | iptv-org | [lien](https://i.imgur.com/bqRC3sl.png) |
 | `automoto-la-chaine-fr.png` | AUTOMOTO LA CHAINE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/automoto-la-chaine-fr.png) |
 | `b-one.png` | B-ONE | iptv-org | [lien](https://i.imgur.com/O66JSq5.png) |
+| `b-smart-fr.png` | BSMART 4CHANGE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/b-smart-fr.png) |
 | `bbc-world-news-int.png` | BBC WORLD NEWS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/international/bbc-world-news-int.png) |
 | `bein-sports-1-french-fr.png` | BEIN SPORTS 1 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/bein-sports-1-french-fr.png) |
 | `bein-sports-2-french-fr.png` | BEIN SPORTS 2 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/bein-sports-2-french-fr.png) |
 | `bein-sports-3-french-fr.png` | BEIN SPORTS 3 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/bein-sports-3-french-fr.png) |
 | `bein-sports-max-int.png` | BEIN SPORTS MAX 4, BEIN SPORTS MAX 5, BEIN SPORTS MAX 6 (+4) | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/international/beinsports/old/stacked/bein-sports-max-int.png) |
+| `bet-fr.png` | BET | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/bet-fr.png) |
 | `bfm-business-fr.png` | BFM BUSINESS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/bfm-business-fr.png) |
 | `bfm-tv-fr.png` | BFM TV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/bfm-tv-fr.png) |
+| `bfm2.png` | BFM2 | iptv-org | [lien](https://alloforfait.fr/wp-content/uploads/2024/03/logo-bfm2-300x200.jpg) |
 | `bloomberg-television-us.png` | BLOOMBERG EUROPE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/united-states/bloomberg-television-us.png) |
 | `boomerang-fr.png` | BOOMERANG, BOOMERANG +1, BOOMERANG (VO) (+1) | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/boomerang-fr.png) |
 | `c-news-fr.png` | CNEWS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/c-news-fr.png) |
 | `c-star-fr.png` | CSTAR, CSTAR HITS FRANCE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/c-star-fr.png) |
+| `canal-10-guadeloupe.png` | CANAL 10 GUADELOUPE | iptv-org | [lien](https://i.imgur.com/FAbd8jL.png) |
 | `canal-j-fr.png` | CANAL J | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/canal-j-fr.png) |
 | `canal-plus-box-office-fr.png` | C+ BOX OFFICE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/canal-plus-box-office-fr.png) |
 | `canal-plus-cinemas-fr.png` | C+ CINEMAS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/canal-plus-cinemas-fr.png) |
@@ -79,6 +86,7 @@ Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une 
 | `etv.png` | ETV | iptv-org | [lien](https://i.imgur.com/m5E2VP0.png) |
 | `eurochannel.png` | EUROCHANNEL | iptv-org | [lien](https://i.imgur.com/yXAtmI6.png) |
 | `euronews-francais.png` | EURONEWS FRANCAIS | iptv-org | [lien](https://i.imgur.com/5A0Wnrv.png) |
+| `europe-2-pop-tv-fr.png` | EUROPE 2 POP TV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/europe-2-pop-tv-fr.png) |
 | `eurosport-2-fr.png` | EUROSPORT 2 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/eurosport-2-fr.png) |
 | `fashion-tv-int.png` | FASHIONTV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/international/fashion-tv-int.png) |
 | `fox-news-us.png` | FOXNEWS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/united-states/fox-news-us.png) |
@@ -87,29 +95,39 @@ Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une 
 | `france-3-fr.png` | FRANCE 3, FRANCE 3 NATIONALE, FRANCE 3 ALPES (+23) | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/france-3-fr.png) |
 | `france-4-fr.png` | FRANCE 4 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/france-4-fr.png) |
 | `france-5-fr.png` | FRANCE 5 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/france-5-fr.png) |
-| `franceinfo-fr.png` | FRANCEINFO: | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/franceinfo-fr.png) |
-| `gulli-fr.png` | GULLI | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/gulli-fr.png) |
+| `franceinfo-fr.png` | FRANCEINFO:, FRANCEINFO | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/franceinfo-fr.png) |
+| `game-one-fr.png` | GAME ONE, GAME ONE +1 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/game-one-fr.png) |
+| `guadeloupe-1ere.png` | GUADELOUPE 1ERE | iptv-org | [lien](https://i.imgur.com/g8QTonQ.png) |
+| `gulli-fr.png` | GULLI, GULLI MAX | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/gulli-fr.png) |
+| `guyane-1ere.png` | GUYANE 1ERE | iptv-org | [lien](https://i.imgur.com/aHoVNvh.png) |
 | `histoire-tv-fr.png` | HISTOIRE TV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/histoire-tv-fr.png) |
 | `hustler-hd-us.png` | HUSTLER HD | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/united-states/hustler-hd-us.png) |
 | `i24-news-il.png` | I24NEWS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/israel/i24-news-il.png) |
+| `imearth.png` | IMEARTH | iptv-org | [lien](https://i.imgur.com/6aJMgve.jpeg) |
 | `investigation-discovery-int.png` | DISCOVERY INVESTIGATION | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/international/investigation-discovery-int.png) |
+| `io-tv.png` | IO TV | iptv-org | [lien](https://i.imgur.com/KwtIGj1.png) |
+| `j-one-fr.png` | J ONE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/j-one-fr.png) |
 | `journal-tv-du-golf.png` | JOURNAL TV DU GOLF | iptv-org | [lien](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_officiel_Journal_du_Golf.png/250px-Logo_officiel_Journal_du_Golf.png) |
 | `kanal-austral.png` | KANAL AUSTRAL | iptv-org | [lien](https://i.imgur.com/MaaxPJb.png) |
 | `kika-de.png` | KIKA | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/germany/kika-de.png) |
+| `kmt.png` | KMT | iptv-org | [lien](https://i.imgur.com/xIYPPsK.png) |
+| `kourou-tv.png` | KOUROU TV | iptv-org | [lien](https://i.imgur.com/ZOmFLh3.png) |
 | `kto-fr.png` | KTO | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/kto-fr.png) |
-| `l-esprit-sorcier.png` | L'ESPRIT SORCIER | iptv-org | [lien](https://i.imgur.com/zyh8yub.png) |
+| `l-esprit-sorcier.png` | L'ESPRIT SORCIER, L'ESPRIT SORCIER TV | iptv-org | [lien](https://i.imgur.com/zyh8yub.png) |
 | `la-chaine-meteo-fr.png` | LA CHAINE METEO | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/la-chaine-meteo-fr.png) |
 | `lci-fr.png` | LCI | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/lci-fr.png) |
-| `lcp-fr.png` | LCP/PS, LCP 100% | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/lcp-fr.png) |
+| `lcp-fr.png` | LCP/PS, LCP 100%, LCP | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/lcp-fr.png) |
 | `le-figaro-tv.png` | LE FIGARO TV | iptv-org | [lien](https://i.imgur.com/a8RuRUQ.png) |
 | `lequipe-fr.png` | LA CHAINE L'EQUIPE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/lequipe-fr.png) |
-| `ligue-1plus-2-fr.png` | LIGUE 1+ 2 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-2-fr.png) |
-| `ligue-1plus-3-fr.png` | LIGUE 1+ 3 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-3-fr.png) |
-| `ligue-1plus-4-fr.png` | LIGUE 1+ 4 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-4-fr.png) |
-| `ligue-1plus-5-fr.png` | LIGUE 1+ 5 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-5-fr.png) |
-| `ligue-1plus-7-fr.png` | LIGUE 1+ 7 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-7-fr.png) |
-| `ligue-1plus-8-fr.png` | LIGUE 1+ 8 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-8-fr.png) |
-| `ligue-1plus-9-fr.png` | LIGUE 1+ 9 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-9-fr.png) |
+| `ligue-1plus-2-fr.png` | LIGUE 1+ 2, LIGUE 1+2 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-2-fr.png) |
+| `ligue-1plus-3-fr.png` | LIGUE 1+ 3, LIGUE 1+3 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-3-fr.png) |
+| `ligue-1plus-4-fr.png` | LIGUE 1+ 4, LIGUE 1+4 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-4-fr.png) |
+| `ligue-1plus-5-fr.png` | LIGUE 1+ 5, LIGUE 1+5 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-5-fr.png) |
+| `ligue-1plus-6-fr.png` | LIGUE 1+6 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-6-fr.png) |
+| `ligue-1plus-7-fr.png` | LIGUE 1+ 7, LIGUE 1+7 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-7-fr.png) |
+| `ligue-1plus-8-fr.png` | LIGUE 1+ 8, LIGUE 1+8 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-8-fr.png) |
+| `ligue-1plus-9-fr.png` | LIGUE 1+ 9, LIGUE 1+9 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-9-fr.png) |
+| `ligue-1plus-fr.png` | LIGUE 1+ | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ligue-1plus-fr.png) |
 | `lucky-jack-tv.png` | LUCKY JACK TV | iptv-org | [lien](https://i.imgur.com/HKIydT6.png) |
 | `luxe-tv.png` | LUXE TV | iptv-org | [lien](https://i.imgur.com/24ehonx.png) |
 | `m6-fr.png` | M6, M6 4K | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/m6-fr.png) |
@@ -117,15 +135,19 @@ Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une 
 | `maisons-travaux-tv.png` | MAISONS & TRAVAUX TV | iptv-org | [lien](https://i.imgur.com/uYpc6nE.png) |
 | `man-x.png` | MAN-X | iptv-org | [lien](https://i.imgur.com/rod1KmE.png) |
 | `mangas-fr.png` | MANGAS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/mangas-fr.png) |
+| `marmiton-tv.png` | MARMITON TV, MARMITE TV | iptv-org | [lien](https://upload.wikimedia.org/wikipedia/fr/thumb/6/6e/Logo_Marmiton_%282019%29.svg/960px-Logo_Marmiton_%282019%29.svg.png) |
+| `martinique-1ere.png` | MARTINIQUE 1ERE | iptv-org | [lien](https://i.imgur.com/rBhc87a.png) |
 | `mcm-fr.png` | MCM | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/mcm-fr.png) |
 | `medi-1-tv.png` | MEDI 1 TV | iptv-org | [lien](https://i.imgur.com/a20DHnj.png) |
 | `melody-d-afrique.png` | MELODY D'AFRIQUE | iptv-org | [lien](https://i.imgur.com/srBbJ4s.png) |
 | `melody-fr.png` | MELODY | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/melody-fr.png) |
 | `men-s-up-tv.png` | MEN'S UP TV | iptv-org | [lien](https://i.imgur.com/5BZwRFs.png) |
 | `mezzo-fr.png` | MEZZO | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/mezzo-fr.png) |
-| `mezzo-live-fr.png` | MEZZO LIVE HD | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/mezzo-live-fr.png) |
+| `mezzo-live-fr.png` | MEZZO LIVE HD, MEZZO LIVE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/mezzo-live-fr.png) |
 | `mgg-tv-fr.png` | MGG TV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/mgg-tv-fr.png) |
+| `mieux.png` | MIEUX | france.tv | [lien](https://medias.france.tv/hkh5OI4-RzN_ubxlij12nFrGAGA/880x0/filters:quality(85):format(jpeg)/q/o/p/phpgaepoq.jpg) |
 | `mtv-de.png` | MTV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/germany/mtv-de.png) |
+| `mtv-hits-uk.png` | MTV HITS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/united-kingdom/mtv-hits-uk.png) |
 | `museum-eu.png` | MUSEUM TV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/world-europe/museum-eu.png) |
 | `my-zen-tv-es.png` | MY ZEN TV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/spain/my-zen-tv-es.png) |
 | `national-geographic-de.png` | NATIONAL GEOGRAPHIC | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/germany/national-geographic-de.png) |
@@ -141,6 +163,8 @@ Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une 
 | `nrj-hits-fr.png` | NRJ HITS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/nrj-hits-fr.png) |
 | `olympia-tv-fr.png` | OLYMPIA TV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/olympia-tv-fr.png) |
 | `one-de.png` | ONE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/germany/one-de.png) |
+| `paramount-channel-decale-fr.png` | PARAMOUNT CHANNEL DECALE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/paramount-channel-decale-fr.png) |
+| `paramount-channel-fr.png` | PARAMOUNT CHANNEL | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/paramount-channel-fr.png) |
 | `paris-premiere-fr.png` | PARIS PREMIERE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/paris-premiere-fr.png) |
 | `penthouse-black.png` | PENTHOUSE BLACK | iptv-org | [lien](https://i.imgur.com/eo7E8mR.png) |
 | `penthouse-gold-us.png` | PENTHOUSE GOLD | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/united-states/penthouse-gold-us.png) |
@@ -159,24 +183,27 @@ Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une 
 | `rai-3-it.png` | RAI TRE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/italy/rai-3-it.png) |
 | `rai-italia.png` | RAI ITALIA | iptv-org | [lien](https://i.imgur.com/1nN4rEP.png) |
 | `rai-news-24-it.png` | RAI NEWS 24 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/italy/rai-news-24-it.png) |
+| `record-news-br.png` | RECORD NEWS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/brazil/record-news-br.png) |
 | `rfm-tv-fr.png` | RFM | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/rfm-tv-fr.png) |
 | `rmc-decouverte-fr.png` | RMC DECOUVERTE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/rmc-decouverte-fr.png) |
-| `rmc-life-fr.png` | RMC LIFE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/rmc-life-fr.png) |
+| `rmc-life-fr.png` | RMC LIFE, CHERIE 25 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/rmc-life-fr.png) |
 | `rmc-story-fr.png` | RMC STORY | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/rmc-story-fr.png) |
 | `rtl-zwei-de.png` | RTL 2 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/germany/rtl-zwei-de.png) |
 | `rtl9-fr.png` | RTL9 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/rtl9-fr.png) |
+| `rtp-3.png` | RTP 3 | iptv-org | [lien](https://cdn-images.rtp.pt/common/img/channels/logos/color/horizontal/rtpnoticias_2026.png) |
 | `rtpi.png` | RTPI | iptv-org | [lien](https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/RTP_Mundo.svg/960px-RTP_Mundo.svg.png) |
 | `science-and-vie-tv-fr.png` | SCIENCE & VIE TV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/science-and-vie-tv-fr.png) |
 | `serie-club-fr.png` | SERIE CLUB | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/serie-club-fr.png) |
 | `sky-news-uk.png` | SKY NEWS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/united-kingdom/sky-news-uk.png) |
 | `souvenirs-from-earth.png` | SOUVENIRS FROM EARTH | iptv-org | [lien](https://i.ibb.co/Qf1Ys8S/SOUVENIRS-FROM-EARTH.png) |
-| `sport-en-france-fr.png` | SPORT EN FRANCE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/sport-en-france-fr.png) |
+| `sport-en-france-fr.png` | SPORT EN FRANCE, SPORT EN FRANC | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/sport-en-france-fr.png) |
 | `sqool-tv.png` | SQOOL TV | iptv-org | [lien](https://i.imgur.com/iujcGiI.png) |
 | `stingray-classica-de.png` | STINGRAY CLASSICA | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/germany/stingray-classica-de.png) |
 | `sunu-yeuf.png` | SUNU YEUF | iptv-org | [lien](https://i.imgur.com/WSlppQj.png) |
 | `super-rtl.png` | SUPER RTL | iptv-org | [lien](https://i.imgur.com/KbdK8t9.png) |
 | `syfy-de.png` | SYFY | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/germany/syfy-de.png) |
 | `t18-fr.png` | T18 | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/t18-fr.png) |
+| `tahiti-nui-television.png` | TAHITI NUI TELEVISION | iptv-org | [lien](https://i.imgur.com/e5eVHam.png) |
 | `tcm-cinema-fr.png` | TCM CINEMA, TCM CINEMA VO, TCM CINEMA ANGLAIS | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/tcm-cinema-fr.png) |
 | `tech-co.png` | TECH & CO | iptv-org | [lien](https://upload.wikimedia.org/wikipedia/fr/thumb/8/83/Tech_%26_Co.svg/960px-Tech_%26_Co.svg.png) |
 | `tele-kreol.png` | TELE KREOL | iptv-org | [lien](https://i.imgur.com/PcllRXg.png) |
@@ -193,6 +220,7 @@ Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une 
 | `top-sante-tv.png` | TOP SANTE TV | iptv-org | [lien](https://i.imgur.com/O7U0DZk.png) |
 | `toute-lhistoire-fr.png` | TOUTE L'HISTOIRE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/toute-lhistoire-fr.png) |
 | `trace-africa.png` | TRACE AFRICA | iptv-org | [lien](https://i.imgur.com/kPUkoS7.png) |
+| `trace-caribbean-fr.png` | TRACE CARABBEAN | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/trace-caribbean-fr.png) |
 | `trace-gospel.png` | TRACE GOSPEL | iptv-org | [lien](https://i.imgur.com/X0UmU3K.png) |
 | `trace-latina-fr.png` | TRACE LATINA | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/trace-latina-fr.png) |
 | `trace-tropical.svg` | TRACE TROPICAL | picons | [lien](https://cdn.jsdelivr.net/gh/picons/picons@1ed63488cb93094fe5dddde9c15591c91ba7e27e/build-source/logos/tracetropical.default.svg) |
@@ -202,7 +230,7 @@ Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une 
 | `trt-world-tr.png` | TRT WORLD | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/turkey/trt-world-tr.png) |
 | `tv-breizh-fr.png` | TV BREIZH | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/tv-breizh-fr.png) |
 | `tv-monaco.png` | TV MONACO | iptv-org | [lien](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/TVMonaco_2023.svg/960px-TVMonaco_2023.svg.png) |
-| `tv5-monde-fr.png` | TV5MONDE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/tv5-monde-fr.png) |
+| `tv5-monde-fr.png` | TV5MONDE, TV5 MONDE | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/tv5-monde-fr.png) |
 | `tve-internacional-int.png` | TVE INTERNACIONAL | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/international/tve-internacional-int.png) |
 | `ushuaia-tv-fr.png` | USHUAIA TV | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/france/ushuaia-tv-fr.png) |
 | `vox-africa.png` | VOX AFRICA | iptv-org | [lien](https://upload.wikimedia.org/wikipedia/fr/thumb/6/63/Voxafrica-1.png/960px-Voxafrica-1.png) |
@@ -213,3 +241,4 @@ Si vous êtes détenteur d'un de ces logos et souhaitez son retrait, ouvrez une 
 | `xxl.png` | XXL | iptv-org | [lien](https://i.imgur.com/TEuLkeQ.png) |
 | `zdf-de.png` | ZDF | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/germany/zdf-de.png) |
 | `zdf-neo-de.png` | ZDF_NEO | tv-logos | [lien](https://cdn.jsdelivr.net/gh/tv-logo/tv-logos@d32e347bb7c4c640dceec23957802ad9182f58a6/countries/germany/zdf-neo-de.png) |
+| `zitata-tv.png` | ZITATA TV | iptv-org | [lien](https://i.imgur.com/KJmefse.png) |
