@@ -118,7 +118,7 @@ La carte intègre les **vrais logos** des chaînes, stockés **en local** dans l
 | Liste de l'intégration | Chaînes | Avec logo | Sans logo |
 | --- | --- | --- | --- |
 | France (par défaut) | 247 | **247** | — (« GUIDE TV » affiche l'icône du guide) |
-| Caraïbes | 187 | 183 | ATV, Nina Novelas, Tfou Max, Cheval TV |
+| Caraïbes | 177 | 174 | ATV, Nina Novelas, Cheval TV |
 | Pologne | 210 | 4 | non prise en charge pour l'instant |
 
 Sources : le dépôt libre [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) (168 fichiers), la base
